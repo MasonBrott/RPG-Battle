@@ -14,7 +14,7 @@ class bcolors:
 
 class person:
 
-    def __init__(self, hp, mp, atk, df, magic):
+    def __init__(self, hp, mp, atk, df, magic, items):
         self.maxhp = hp
         self.hp = hp
         self.maxmp = mp
@@ -23,7 +23,8 @@ class person:
         self.atklow = atk - 10
         self.df = df
         self.magic = magic
-        self.action = ['Attack', 'Magic']
+        self.items = items
+        self.action = ['Attack', 'Magic', 'Items']
 
     def generate_damage(self):
         return random.randrange(self.atklow, self.atkhigh)
@@ -60,10 +61,16 @@ class person:
         i = 1
         print('Magic')
         for spell in self.magic:
-            print(str(i) + ':', spell.name, '(cost:', str(spell.cost) + ')')
+            print(str(i) + '.', spell.name, '(cost:', str(spell.cost) + ')')
             i += 1
 
     def heal(self, dmg):
         self.hp += dmg
         if self.hp > self.maxhp:
             self.hp = self.maxhp
+
+    def choose_item(self):
+        i = 1
+        for item in self.items:
+            print(str(i) + '.' + item.name + ': ' + item.description + ' x' + str(item.amount))
+            i += 1
