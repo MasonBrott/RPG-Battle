@@ -1,4 +1,4 @@
-rom classes.game import person, bcolors
+from classes.game import person, bcolors
 from classes.magic import spell
 from classes.inventory import *
 
